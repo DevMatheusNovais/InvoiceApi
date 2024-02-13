@@ -13,7 +13,6 @@ public class InvoiceDto {
     @NotBlank
     private String insertResponsibleName;
 
-    @NotBlank
     private String operatorResponsibleName;
 
     public String getInvoiceNumber() {

@@ -29,7 +29,7 @@ public class InvoiceController {
         this.invoiceService = invoiceService;
     }
 
-    @PostMapping("/adding-invoice")
+    @PostMapping
     public ResponseEntity<Object> saveInvoice(@RequestBody @Valid InvoiceDto invoiceDto){
         if (invoiceService.existsByInvoiceNumber(invoiceDto.getInvoiceNumber())){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Invoice is already in use");

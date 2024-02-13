@@ -23,7 +23,7 @@ public class InvoiceModel implements Serializable {
     @Column(nullable = false,length = 130)
     private String insertResponsibleName;
 
-    @Column(nullable = false,length = 130)
+    @Column(nullable = true,length = 130)
     private String operatorResponsibleName;
 
     public UUID getId() {
