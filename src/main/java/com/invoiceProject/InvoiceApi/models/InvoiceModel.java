@@ -26,6 +26,11 @@ public class InvoiceModel implements Serializable {
     @Column(nullable = true,length = 130)
     private String operatorResponsibleName;
 
+
+
+    @Column(nullable = true,length = 130)
+    private String invoiceStatus;
+
     public UUID getId() {
         return id;
     }
@@ -64,5 +69,13 @@ public class InvoiceModel implements Serializable {
 
     public void setOperatorResponsibleName(String operatorResponsibleName) {
         this.operatorResponsibleName = operatorResponsibleName;
+    }
+
+    public String getInvoiceStatus() {
+        return invoiceStatus;
+    }
+
+    public void setInvoiceStatus(String invoiceStatus) {
+        this.invoiceStatus = invoiceStatus;
     }
 }

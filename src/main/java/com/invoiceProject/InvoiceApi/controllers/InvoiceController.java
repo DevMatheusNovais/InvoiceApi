@@ -38,6 +38,7 @@ public class InvoiceController {
         InvoiceModel invoiceModel = new InvoiceModel();
         BeanUtils.copyProperties(invoiceDto,invoiceModel);
         invoiceModel.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
+        invoiceModel.setInvoiceStatus("CREATED");
         return ResponseEntity.status(HttpStatus.CREATED).body(invoiceService.save(invoiceModel));
     }
     @GetMapping
@@ -53,4 +54,22 @@ public class InvoiceController {
         invoiceService.delete(parkingSpotModelOptional.get());
         return ResponseEntity.status(HttpStatus.OK).body("Invoice Deleted");
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateInvoice(@PathVariable(value ="id" ) UUID id) {
+
+        Optional<InvoiceModel> invoiceModelOptional = invoiceService.findById(id);
+        if (!invoiceModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking Spot not found.");
+        }
+
+        var invoiceModel = invoiceModelOptional.get();
+
+
+        invoiceModel.setRegistrationDate(invoiceModelOptional.get().getRegistrationDate());
+        invoiceModel.setInvoiceStatus("DONE");
+
+        return ResponseEntity.status(HttpStatus.OK).body(invoiceService.save(invoiceModel));
+    }
+
 }
